@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Analysis Result - Menty</title>
+<style>
+    body {
+        background-color: #f9f9f9;
+        color: #333;
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    h1, h2 {
+        color: #007bff;
+    }
+    .score-poor {
+        color: red;
+    }
+    .score-good {
+        color: green;
+    }
+    .score-very-poor {
+        color: darkred;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    li {
+        margin-bottom: 5px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+{% include "navbar.html" %}
+
+<div class="container">
+    <h1 class="text-center">Skin Analysis Result</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <br>
+            <p>Acne: <span class="{{ 'score-poor' if results[0] > 0.3 else 'score-very-poor' if results[0] > 0.1 else 'score-good' }}">{{ results[0] }}</span> {% if results[0] > 0.3 %}- Very Poor{% elif results[0] > 0.1 %}- Poor{% else %}- Good{% endif %}</p>
+            <p>Pigmentation: <span class="{{ 'score-poor' if results[1] > 0.3 else 'score-very-poor' if results[1] > 0.1 else 'score-good' }}">{{ results[1] }}</span> {% if results[1] > 0.3 %}- Very Poor{% elif results[1] > 0.1 %}- Poor{% else %}- Good{% endif %}</p>
+            <p>Redness: <span class="{{ 'score-poor' if results[2] > 0.3 else 'score-very-poor' if results[2] > 0.15 else 'score-good' }}">{{ results[2] }}</span> {% if results[2] > 0.3 %}- Very Poor{% elif results[2] > 0.15 %}- Poor{% else %}- Good{% endif %}</p>
+            <p>Sagging: <span class="{{ 'score-poor' if results[3] > 0.3 else 'score-very-poor' if results[3] > 0.1 else 'score-good' }}">{{ results[3] }}</span> {% if results[3] > 0.3 %}- Very Poor{% elif results[3] > 0.1 %}- Poor{% else %}- Good{% endif %}</p>
+            <p>Hydration: <span class="{{ 'score-poor' if results[4] < 0.15 else 'score-good' }}">{{ results[4] }}</span> {% if results[4] < 0.15 %}- Poor{% else %}- Good{% endif %}</p>
+        </div>
+        <div class="col-md-6">
+            <br>
+            <p>Translucency: <span class="{{ 'score-poor' if results[5] < 0.2 else 'score-good' }}">{{ results[5] }}</span> {% if results[5] < 0.2 %}- Poor{% else %}- Good{% endif %}</p>
+            <p>Uniformness: <span class="{{ 'score-poor' if results[6] < 0.2 else 'score-good' }}">{{ results[6] }}</span> {% if results[6] < 0.2 %}- Poor{% else %}- Good{% endif %}</p>
+            <p>Wrinkles: <span class="{{ 'score-poor' if results[7] > 0.15 else 'score-good' }}">{{ results[7] }}</span> {% if results[7] > 0.15 %}- Poor{% else %}- Good{% endif %}</p>
+            <p>Pores: <span class="{{ 'score-poor' if results[8] > 0.15 else 'score-good' }}">{{ results[8] }}</span> {% if results[8] > 0.15 %}- Poor{% else %}- Good{% endif %}</p>
+            <p>Oily: <span class="{{ 'score-poor' if results[9] > 0.15 else 'score-good' }}">{{ results[9] }}</span> {% if results[9] > 0.15 %}- Poor{% else %}- Good{% endif %}</p>
+        </div>
+    </div>
+    
+    <h2 class="mt-4">Recommended Products</h2>
+    <ul>
+        {% for key, recommendation in recommendations.items() %}
+            <li><strong>{{ key }}:</strong> {{ recommendation }}</li>
+        {% endfor %}
+    </ul>
+    <a href="/predict2" class="btn btn-primary mb-3 mt-5">Back</a>
+<a href="/symptoms" class="btn btn-danger ml-2 mb-3 mt-5">Exit</a>
+</div>
+
+
+{% include "conclusion.html" %}
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,118 @@
+{% extends "base1.html" %}
+
+{% block head %}
+<title>Diagnose-ML - Menty</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: lightcyan;
+        color: #333;
+    }
+    .container-custom {
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 40px !important;
+        margin-bottom: 40px !important;
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        transform: translateY(20px);
+    }
+    .container-custom.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .btn-primary {
+        background-color: green !important;
+        border: none;
+        border-radius: 20px;
+    }
+    .btn-primary:hover {
+        background-color: rgb(1, 68, 1) !important;
+    }
+    .bg {
+        background-color: lightcyan;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+{% include "navbar.html" %}
+
+<div class="container-fluid">
+    <h1 class="text-center my-4" style="font-weight: 700;">Diagnose-ML</h1>
+
+    <div class="row container-custom bg">
+        <div class="col-md-4">
+            <img src="{{ url_for('static', filename='quizes.jpg') }}" alt="Image 1" class="img-fluid rounded">
+        </div>
+        <div class="col-md-8">
+            <h3 style="font-weight: 600;">Symptom Checker (Disease Prediction from Symptoms)</h3>
+            <p style="font-size: large;" class="lead">What we offer:</p>
+            <p class="lead" style="font-size: medium;">1. <strong>Symptom Input:</strong> Users enter their symptoms, and the model predicts potential diseases based on input patterns.</p>
+            <p class="lead" style="font-size: medium;">2. <strong>Data-Driven Insights:</strong> The model is trained with the dataset collected from study of university of Columbia performed at New York Presbyterian Hospital during 2004. </p>
+            <p class="lead" style="font-size: medium;">3. <strong>User-Friendly Interface:</strong> Easy-to-use platform with simple input forms and detailed result explanations.</p>
+            <a class="btn btn-primary" href="predict" role="button">Predict</a>
+        </div>
+    </div>
+
+    <div class="row container-custom bg">
+        <div class="col-md-4">
+            <img src="{{ url_for('static', filename='mental.jpg') }}" alt="Mental Health" class="img-fluid rounded">
+        </div>
+        <div class="col-md-8">
+            <h3 style="font-weight: 600;">Mental Illness Detector</h3>
+            <p class="lead">Our Mental Illness Detector ML Model is designed to assess the mental well-being of individuals by asking a series of questions and predicting their emotional state. Here are the key components of our model:</p>
+            <p class="lead">1. <strong>Questionnaire-Based Assessment:</strong> The model utilizes a questionnaire-based approach to gather information about the user's mental and emotional state. By asking relevant questions, the model aims to gain insights into the user's well-being and stress levels.</p>
+            <p class="lead">2. <strong>Emotional State Prediction:</strong> Based on the user's responses, the model predicts the depression state of the individual, categorizing them as no depression, mild, moderate and Severe. This prediction is derived from an analysis of the user's answers and is designed to provide an initial assessment of their mental well-being.</p>
+            <p class="lead">3. <strong>Identification of Need for Help:</strong> In cases where the model detects signs of stress or emotional distress, it provides recommendations and resources for seeking help. This may include suggesting professional support or offering guidance on managing stress and improving mental well-being.</p>
+            <a class="btn btn-primary" href="predict1" role="button">Predict</a>
+        </div>
+    </div>
+
+    <div class="row container-custom bg">
+        <div class="col-md-4">
+            <img src="{{ url_for('static', filename='skincare.jpg') }}" alt="Skin Care" class="img-fluid rounded">
+        </div>
+        <div class="col-md-8">
+            <h3 style="font-weight: 600;">Skin Care Model</h3>
+            <p class="lead">Our state-of-the-art skin care model utilizes image processing and deep learning approaches to analyze the skin and provide personalized remedies to improve its condition. Here's an overview of the key features and methodologies incorporated into our skin care model:</p>
+            <p class="lead">1. <strong>Image Processing:</strong> The model employs Convolutional Neural Networks (CNN) deep learning algorithms to classify skin types, including normal, oily, and dry, from a dataset of enhanced skin images.</p>
+            <p class="lead">2. <strong>Personalized Skin Analysis and Recommendations:</strong> Based on the analysis, the model offers personalized recommendations for products and treatments tailored to individual needs, contributing to an improved skin care routine.</p>
+            <p class="lead">3. <strong>Advantages and Impact:</strong> The utilization of AI-based image analysis not only accurately assesses the skin but also provides personalized recommendations, contributing to enhanced user experience and satisfaction.</p>
+            <a class="btn btn-primary" href="predict2" role="button">Predict</a>
+        </div>
+    </div>
+</div>
+{% include "conclusion.html" %}
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let options = {
+            threshold: 0.1
+        };
+
+        let observer = new IntersectionObserver(function (entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, options);
+
+        let targets = document.querySelectorAll('.container-custom');
+        targets.forEach(target => {
+            observer.observe(target);
+        });
+    });
+</script>
+{% endblock %}
+

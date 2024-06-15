@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+
+{% block head %}
+  <title>Rate & Provide Feedback </title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+    }
+
+    h2 {
+      margin-top: 50px;
+      text-align: center;
+      color: #333;
+    }
+
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+      border-radius: 5px;
+    }
+    .bg{
+        border: 2px black !important;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    table {
+      width: 70%;
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+
+    .rating {
+       
+        direction: rtl;
+        text-align: center;
+        display: inline-block;
+        
+    }
+
+    .rating input {
+        display: none;
+    }
+
+    .rating label {
+        display: inline-block;
+        cursor: pointer;
+        color: #777777;
+        
+    }
+
+    .rating label:before {
+        content: '\2605';
+        font-size: 2em;
+        padding: 0.1em;
+        color: #d3d3d3;
+    }
+
+    .rating input:checked ~ label:before,
+    .rating label:hover ~ label:before {
+        color: #f7d301;
+    }
+
+    .rating input:checked + label:before {
+        color: #f7d301;
+    }
+
+    .rating label:hover:before {
+        color: #f7d301;
+    }
+    .rating-container {
+        display: flex;
+        justify-content: center;
+    }
+    
+  </style>
+
+{% endblock %}
+{% block body %}
+{% include "navbar.html" %}
+
+<br>
+
+
+  <h2>Rate & Provide Feedback for {{ doc.title }}</h2>
+
+  <form action="/review_doc" method="post" class="container text-center bg">
+    <input type="hidden" name="doc_id" value="{{ doc.id }}">
+    
+    <label for="feedback" style="margin-right: 100% !important;">Feedback:</label>
+    <textarea id="feedback" name="feedback" rows="4"></textarea>
+    <div class="rating-container">
+      <div class="rating" name="rating">
+        <input type="radio" id="star5" name="rating" value="5">
+        <label for="star5"></label>
+        <input type="radio" id="star4" name="rating" value="4">
+        <label for="star4"></label>
+        <input type="radio" id="star3" name="rating" value="3">
+        <label for="star3"></label>
+        <input type="radio" id="star2" name="rating" value="2">
+        <label for="star2"></label>
+        <input type="radio" id="star1" name="rating" value="1">
+        <label for="star1"></label>
+    </div>
+    </div>
+    <button type="submit">Submit</button>
+    <br>
+    <br>
+    <a href="/medication" class="btn btn-primary">Back to home page</a>
+
+  </form>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Rating (out of 5)</th>
+        <th>Feedback</th>
+        <th>Username</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for rf in ratingandfeedbacks %}
+      {%if rf.doc_id==doc.id%}
+      <tr>
+        <td>{{ doc.title }}</td>
+        <td>{{ rf.rating }}</td>
+        <td>{{ rf.feedback }}</td>
+        <td>{{rf.username}}</td>
+      </tr>
+      {%endif%}
+      {% endfor %}
+    </tbody>
+  </table>
+  <br>
+  <br>
+ 
+  {% include "conclusion.html" %}
+
+
+{% endblock %}

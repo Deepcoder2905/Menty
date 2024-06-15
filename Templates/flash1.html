@@ -1,0 +1,24 @@
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show m-1" role="alert" aria-live="assertive">
+                <h2 class="alert-heading">Disclaimer</h2>
+                <p>{{ message }}</p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<style>
+    .alert-warning {
+        background-color: #f8d7da;
+        color: #721c24;
+        border-color: #f5c6cb;
+    }
+    .alert-heading {
+        font-size: 1.5em;
+        margin-top: 0;
+        margin-bottom: 0.5em;
+    }
+</style>

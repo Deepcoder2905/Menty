@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+          .health-organic-theme {
+    background-color: #f3e5f5; /* Light purple background color */
+    padding: 50px 0; /* Add padding for spacing */
+}
+
+.service-card2 {
+    background-color: #ffffff; /* White background color */
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px;
+    margin-bottom: 20px; /* Adjust margin for spacing */
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Add shadow for depth */
+}
+
+.service-card2 h2 {
+    color: #673ab7; /* Dark purple heading color */
+}
+
+.service-card2 p, .service-card2 ul li {
+    color: #333333; /* Text color */
+    font-size: 16px; /* Font size */
+}
+
+.service-card2 ul {
+    padding-left: 20px; /* Adjust list padding */
+}
+
+.service-card2 ul li {
+    list-style-type: none; /* Remove bullet points */
+    margin-bottom: 5px; /* Adjust spacing between list items */
+}
+    </style>
+{% endblock %}
+{% block body %}
+
+{% include "navbar1.html" %}
+    
+ <div class="container-fluid health-organic-theme text-center">
+    <div id="section2" class="animated-section">
+      <div class="row">
+        <h1 class="text-center mb-2"> Admin Features</h1>
+          <div class="col-md-3">
+              <div class="service-card2 animate__animated animate__fadeInUp animate__delay-1s">
+                  <h2>Document Management</h2>
+                  <p>Add docs</p>
+                  <a href="add_doc" class="btn btn-primary">Add Doc!</a>
+              </div>
+          </div>
+          <div class="col-md-3">
+              <div class="service-card2 animate__animated animate__fadeInUp animate__delay-2s">
+                  <h2>Add Sec</h2>
+                  <p>Add Sections</p>
+                  <a href="add_sec" class="btn btn-primary">Add Sec!</a>
+                  
+              </div>
+          </div>
+          <div class="col-md-3">
+              <div class="service-card2 animate__animated animate__fadeInUp animate__delay-3s">
+                  <h2>Product</h2>
+                  <p>Will provide organic products that have 0 side effects and have better result than that of the products made from chemicals.</p>
+                  <p>Will Be Coming Soon!! </p>
+              </div>
+          </div>
+          <div class="col-md-3">
+              <div class="service-card2 animate__animated animate__fadeInUp animate__delay-4s">
+                <h2>We Value Your Feedback!</h2>
+                <p>Your thoughts and feedback help us improve and provide better service. Could you take a moment to leave us a review?</p>
+                <a href="review" class="btn btn-primary">Leave a Review</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+    
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    {% include "conclusion.html" %}
+
+    {% endblock %}

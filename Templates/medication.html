@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Medication-Menty</title>
+
+<style>
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+    }
+
+    .section-title {
+        font-size: 30px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #6c757d;
+        padding-bottom: 10px;
+        margin-top: 20px;
+    }
+
+    .jumbotron {
+        background-color: white;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .book li {
+        flex: 0 0 calc(33.333% - 20px);
+        margin-right: 20px;
+        margin-bottom: 20px;
+        padding: 20px;
+        border: 1px solid wheat;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .book h3 {
+        margin-top: 10px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        transition: background-color 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+{% include "navbar.html" %}
+<div class="alert alert-success" role="alert" style="border-left: 5px solid #ffc107;">
+    <h3 class="alert-heading" style="font-weight: bold; color: #856404;">Please Note:</h3>
+    <hr>
+    <p style="font-size: 1.1rem; color: #856404;">The Section listed in Menty are categorized based on the body part they primarily affect. Will upload more Documentation soon!!</p>
+</div>
+
+<div class="container jumbotron mt-5">
+    <h2 class="section-title">Recently Added Documentation</h2>
+    <div class="row">
+        {% for doc in recent_docs %}
+        <div class="col-lg-4 col-md-6 col-sm-12 book">
+            <li>
+                <img src="{{ url_for('static', filename=doc.cover_path) }}" alt="Cover Image" class="card-img-top">
+                <h3>Title: {{ doc.title }}</h3>
+                <p>Description: {{ doc.description }}</p>
+                <form method="POST" action="/view_pdf">
+                    <input type="hidden" name="doc_id" value="{{ doc.id }}">
+                    <button type="submit" class="btn btn-primary">Read</button>
+                </form>
+                <a href="/rate_doc/{{ doc.id }}" class="btn btn-success mt-2">Rate & Review</a>
+            </li>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container jumbotron mt-5">
+    <h2 class="section-title">Top Rated Documentation</h2>
+    <div class="row">
+        {% for doc, avg_rating in top_rated_docs %}
+        <div class="col-lg-4 col-md-6 col-sm-12 book">
+            <li>
+                <img src="{{ url_for('static', filename=doc.cover_path) }}" alt="Cover Image" class="card-img-top">
+                <h3>Title: {{ doc.title }}</h3>
+                <p>Description: {{ doc.description }}</p>
+                <p>Average Rating: {{ avg_rating|round(1) }}</p>
+                <form method="POST" action="/view_pdf">
+                    <input type="hidden" name="doc_id" value="{{ doc.id }}">
+                    <button type="submit" class="btn btn-primary">Read</button>
+                </form>
+                <a href="/rate_doc/{{ doc.id }}" class="btn btn-success mt-2">Rate & Review</a>
+            </li>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% for section in sections %}
+    {% set section_docs = documents | selectattr('section_id', 'equalto', section.id) | list %}
+    {% if section_docs %}
+        <div class="container jumbotron">
+            <h2 class="section-title">{{ section.name }}</h2>
+            <div class="row">
+                {% for doc in section_docs %}
+                <div class="col-lg-4 col-md-6 col-sm-12 book">
+                    <li>
+                        <img src="{{ url_for('static', filename=doc.cover_path) }}" alt="Cover Image" class="card-img-top">
+                        <h3>Title: {{ doc.title }}</h3>
+                        <p>Description: {{ doc.description }}</p>
+                        <form method="POST" action="/view_pdf">
+                            <input type="hidden" name="doc_id" value="{{ doc.id }}">
+                            <button type="submit" class="btn btn-primary">Read</button>
+                        </form>
+                        <a href="/rate_doc/{{ doc.id }}" class="btn btn-success mt-2">Rate & Review</a>
+                    </li>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endfor %}
+
+<div class="container jumbotron">
+    <h2 class="section-title">Unassigned Docs</h2>
+    <div class="row">
+        {% for doc in documents %}
+            {% if doc.section_id == 0 %}
+            <div class="col-lg-4 col-md-6 col-sm-12 book">
+                <li>
+                    <img src="{{ url_for('static', filename=doc.cover_path) }}" alt="Cover Image" class="card-img-top">
+                    <h3>Title: {{ doc.title }}</h3>
+                    <p>Description: {{ doc.description }}</p>
+                    <form method="POST" action="/view_pdf">
+                        <input type="hidden" name="doc_id" value="{{ doc.id }}">
+                        <button type="submit" class="btn btn-primary">Read</button>
+                    </form>
+                    <a href="/rate_doc/{{ doc.id }}" class="btn btn-success mt-2">Rate & Review</a>
+                </li>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% include "conclusion.html" %}
+{% endblock %}
+
+

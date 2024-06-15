@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Services - Menty</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<style>
+    .service-card {
+        background-color: #e3f2fd;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+    }
+    .service-card h3 {
+        color: #007bff;
+    }
+    .service-card ul {
+        padding-left: 20px;
+    }
+    .service-card ul li {
+        list-style-type: disc;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+{% include "navbar.html" %}
+
+<div class="container mt-5">
+    <h1 class="mb-4">Our Services</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="service-card animate__animated animate__fadeInDown">
+                <h3>Diagnose-ML</h3>
+                <br>
+                <p>In today's fast-paced world, staying on top of your health can be a challenge. That's where Diagnose-ML comes in – your personalized health companion designed to empower you with knowledge and support. Let's explore how Diagnose-ML can help you take control of your health journey:
+                    <br>
+                    <br>
+                    <b>1. Symptom Checker:</b>
+                    Wondering what those symptoms mean? With DiagnoseML's Symptom Checker, you can quickly and accurately identify potential diseases based on your symptoms. Our comprehensive tool guides you through a series of questions, leveraging a vast medical database to provide reliable predictions. Whether it's a cough, a rash, or a headache, our Symptom Checker helps you make informed decisions about your health and seek the care you need.
+                    <br>
+                    <br>
+                   <b> 2. Mental Illness Detector: </b>
+                    Your mental well-being matters just as much as your physical health. DiagnoseML's Mental Illness Detector is here to provide early identification of mental health issues. By engaging you with carefully crafted questions about your daily life, emotions, and behaviors, our tool detects signs of common mental health conditions such as depression, anxiety, and stress. Your privacy is our priority, and our continuous learning ensures accuracy and relevance, offering valuable insights and support for early intervention and access to mental health resources.
+                    <br>
+                    <br>
+                   <b>3. Skin Care Model: </b>
+                    Your skin is your body's first line of defense, and keeping it healthy is essential. With DiagnoseML's Skin Care Model, you can identify and manage skin conditions with ease. Simply upload photos of your skin concerns, and our advanced image analysis algorithms diagnose conditions such as acne, eczema, and psoriasis. But we don't stop there – our Skin Care Model goes beyond diagnosis to provide personalized skincare recommendations tailored to your unique skin type and condition. From treatments to skincare routines and products, we're here to help you achieve healthier, happier skin.
+                    <br>
+                    <br>
+                    With Diagnose-ML by Menty, your journey to better health begins today. From symptom checking to mental health support and skincare solutions, we're committed to empowering you with the knowledge and tools you need to thrive. Take the first step towards a healthier, happier you – unlock your health potential with Diagnose-ML.</p>
+                    <a href="symptoms" class="btn btn-primary">Know More!</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="service-card animate__animated animate__fadeInDown animate__delay-1s">
+                <h3>Medication</h3>
+                <br>
+                <p>At Menty, we are dedicated to providing comprehensive support for managing various health conditions through our extensive Medication Guide. This document is designed to be a valuable resource for users seeking detailed information about treatment options, precautions, and dietary recommendations for different diseases. Our goal is to empower individuals with knowledge and practical advice to enhance their health and well-being.
+                   <br>
+                   <br>
+                   <b>1. Treatment:</b>
+                    
+                    Our Medication Guide offers an in-depth look at how various diseases can be effectively treated using homemade remedies that have no side effects. These treatments are derived from natural ingredients and traditional practices, ensuring they are gentle on the body while being effective. Each treatment option is thoroughly researched and presented in a clear, easy-to-follow manner, allowing users to take control of their health with confidence. The guide includes step-by-step instructions for preparing and using these remedies, along with explanations of how they work to alleviate symptoms and promote healing.
+                    <br>
+                    <br>
+                    <b> 2. Precautions: </b>
+                    
+                    Understanding what to do and what to avoid is crucial in managing any health condition. Our Medication Guide provides detailed precautions for a wide range of diseases, outlining the do’s and don’ts that can help prevent the condition from worsening and reduce the likelihood of future occurrences. These precautions cover various aspects of daily life, including lifestyle changes, environmental factors, and specific activities to avoid. By following these guidelines, users can significantly improve their chances of recovery and maintain better health. The guide also includes tips for recognizing early warning signs and taking proactive steps to address them.
+                    <br>
+                    <br>
+                    <b> 3. Dietary Recommendations: </b>
+                    
+                    Diet plays a vital role in the management and prevention of diseases. Our Medication Guide offers tailored dietary recommendations for each health condition covered. These recommendations are designed to support the body’s natural healing processes, boost the immune system, and provide essential nutrients. The guide includes lists of beneficial foods to incorporate into the diet, as well as foods to avoid that might exacerbate the condition. Additionally, we provide sample meal plans and recipes to help users easily integrate these dietary changes into their daily routine. By following these dietary guidelines, users can enhance their overall health and support their recovery journey.</p>
+                    <a href="medication" class="btn btn-primary">Know More!</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="service-card animate__animated animate__fadeInUp animate__delay-2s">
+                <h3>Products</h3>
+                <br>
+                <p> At Menty, we're excited to launch our new line of organic products, designed for superior health benefits with zero side effects. These products outperform chemical-based alternatives, offering a natural and holistic approach to wellness.
+                    <br>
+                    <br>
+                   <b> 1. Superior Health Benefits: </b>
+                    
+                    Crafted from the finest natural ingredients to deliver maximum health benefits, supporting your body's natural processes safely.
+                    <br>
+                    <br>
+                   <b>2. Zero Side Effects:</b>
+                    
+                    Free from harmful chemicals, artificial additives, and synthetic ingredients, ensuring gentle and effective care.
+                    <br>
+                    <br>
+                   <b>3. Better Results: </b>
+                    
+                    Our organic formulations provide sustainable, long-term benefits, outperforming conventional chemical products.
+                    <br>
+                    <br>
+                    <b>4. Skin Care Products:</b>
+                    
+                    Includes a range of chemical-free skincare products, improving skin health with the best organic ingredients.
+                    <br>
+                    <br>
+                    <b> 5. Commitment to Sustainability: </b>
+                    
+                    Eco-friendly practices in sourcing and packaging, reflecting our dedication to environmental health.
+                    <br>
+                    <br>
+                    <b> 6. Coming Soon: </b>
+                    
+                    Stay tuned for our official launch. Sign up for our newsletter and follow us on social media for updates and exclusive offers.
+                    Experience the transformative power of nature with Menty's new organic product line, designed for a healthier, more sustainable future.</p>
+                    <a href="product" class="btn btn-primary">Know More!</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="service-card animate__animated animate__fadeInUp animate__delay-3s">
+                <h3> We Value Your Feedback!</h3>
+                <br>
+                <p>At Menty, our commitment to excellence extends beyond just providing exceptional service – we are dedicated to continuously improving and evolving to better meet your needs. Your thoughts and feedback are invaluable to us as they help us understand what we're doing well and where we have room to grow. We invite you to take a moment to share your experience and leave us a review.
+                    <br>
+                    <br>
+                    Your feedback not only shapes our future endeavors but also plays a crucial role in ensuring that we maintain the highest standards of quality and customer satisfaction. Whether you've had a positive experience with our services or have suggestions for areas of improvement, we want to hear from you. Your input is what drives us to strive for excellence and deliver the best possible service to you, our valued customer.
+                    <br>
+                    <br>
+                    By leaving a review, you're not only helping us improve, but you're also contributing to the collective experience of our community. Your insights may help others make informed decisions and enhance their interactions with us.
+                    <br>
+                    <br>
+                    We understand that your time is valuable, and we genuinely appreciate you taking the time to share your thoughts with us. Rest assured that every review is read, considered, and used to inform our ongoing efforts to provide you with an exceptional experience.
+                    <br>
+                    <br>
+                    Thank you for choosing Menty. We look forward to hearing from you and continuing to serve you better in the future.</p>
+                    <a href="review" class="btn btn-primary">Know More!</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% include "conclusion.html" %}
+
+{% endblock %}

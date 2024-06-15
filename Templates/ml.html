@@ -1,0 +1,110 @@
+{% extends "base1.html" %}
+
+{% block head %}
+<title>Symptom Checker - Menty</title>
+<style>
+    .symptom-container {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    .prediction {
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+{% include "navbar.html" %}
+<div class="alert alert-success" role="alert" style="border-left: 5px solid #ffc107;">
+    <h3 class="alert-heading" style="font-weight: bold; color: #856404;">Please Note:</h3>
+    <hr>
+    <p style="font-size: 1.1rem; color: #856404;">The Symptom Checker is made by training three models on 132 symptoms and 42 diseases. If you are facing any disease or experiencing any symptoms that are not mentioned, please write a note to us so we can further improve our model.</p>
+    <p style="font-size: 1.1rem; color: #856404;">More input symptoms lead to more accurate results!</p>
+</div>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-5">Symptom Checker</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <input type="text" class="form-control" id="searchSymptom" placeholder="Search Symptom">
+            </div>
+            <div class="symptom-container">
+                <form action="/predict" method="post" onsubmit="return validateForm()" id="symptomForm">
+                    {% for symptom in symptoms %}
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="symptom" value="{{ symptom }}" id="{{ symptom }}">
+                        <label class="form-check-label" for="{{ symptom }}">{{ symptom }}</label>
+                    </div>
+                    {% endfor %}
+            </div>
+            <button type="submit" class="btn btn-success mt-3 mb-5">Predict</button>
+            <button type="button" class="btn btn-primary mt-3 ml-2 mb-5" onclick="resetSelection()">Reset</button>
+            <a href="/symptoms" class="btn btn-danger mt-3 ml-2 mb-5">Exit</a>
+        </div>
+        </form>
+
+        <div class="col-md-6">
+            <div class="container">
+                <h1 class="text-center mb-4">Prediction Result</h1>
+                <div id="predictionResult">
+                    <h4>Model-1</h4>
+                    {% if result_tree %}
+                    <div class="prediction">
+                        <h4>{{ result_tree }}</h4>
+                    </div>
+                    {% endif %}
+                    <h4>Model-2</h4>
+                    {% if result_knn %}
+                    <div class="prediction">
+                        <h4>{{ result_knn }}</h4>
+                    </div>
+                    {% endif %}
+                    <h4>Model-3</h4>
+                    {% if result_gnb %}
+                    <div class="prediction">
+                        <h4>{{ result_gnb }}</h4>
+                    </div>
+                    {% endif %}
+                </div>
+                <p class="mt-3 lead">You can search the remedies for the predicted diseases on the <br><a href="/medication">Medication page</a>.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function validateForm() {
+        const checkboxes = document.querySelectorAll('input[name="symptom"]:checked');
+        if (checkboxes.length < 2) {
+            alert('Please select at least two symptoms.');
+            return false;
+        }
+        return true;
+    }
+
+    document.getElementById('searchSymptom').addEventListener('input', function () {
+        const searchText = this.value.toLowerCase();
+        const symptoms = document.querySelectorAll('.symptom-container .form-check');
+        symptoms.forEach(function (symptom) {
+            const symptomText = symptom.textContent.trim().toLowerCase();
+            if (symptomText.includes(searchText)) {
+                symptom.style.display = 'block';
+            } else {
+                symptom.style.display = 'none';
+            }
+        });
+    });
+
+    function resetSelection() {
+        document.getElementById('symptomForm').reset();
+        document.getElementById('predictionResult').innerHTML = ''; // Clear prediction result
+    }
+</script>
+{% include "conclusion.html" %}
+{% endblock %}
+
+
+

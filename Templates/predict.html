@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+<title>Mental Illness Detector-Menty</title>
+{% endblock %}
+{% block body %}
+
+{% include "navbar.html" %}
+<div class="alert alert-warning" role="alert" style="border-left: 5px solid #ffc107;">
+    <h3 class="alert-heading" style="font-weight: bold; color: #856404;">Please Note:</h3>
+    <hr>
+    <p style="font-size: 1.1rem; color: #856404;">While the insights provided by this ML model are valuable, its accuracy may vary. We recommend using this tool as a supportive resource and consulting with a mental health professional for a comprehensive evaluation.</p>
+</div>
+    <div class="container mt-5">
+        <h1 class="text-center mb-3">Mental Illness Detector</h1>
+        <form action="/predict1" method="post">
+            {% for question in questions %}
+    <div class="form-group">
+        <label>{{ question }}</label>
+        <select class="form-control mt-3 mb-3" name="{{ question }}">
+            <option value="1">Never</option>
+            <option value="2">Always</option>
+            <option value="3">Often</option>
+            <option value="4">Rarely</option>
+            <option value="5">Sometimes</option>
+        </select>
+    </div>
+{% endfor %}
+
+           
+            <button type="submit" class="btn btn-success mb-5 mt-3">Submit</button>
+            <a href="/symptoms" class="btn btn-primary mb-5 mt-3 ml-2">Back</a>
+        </form>
+    </div>
+    {% include "conclusion.html" %}
+
+
+    {% endblock %}
+

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>Prediction Result</title>
+{% endblock %}
+
+{% block body %}
+    {% include "navbar.html" %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-5">Prediction Result</h1>
+        <div class="alert alert-info text-center mb-5">
+            <h3>{{ prediction }}</h3>
+        </div>
+        <a href="/predict1" class="btn btn-primary mb-3">Back</a>
+        <a href="/symptoms" class="btn btn-danger ml-2 mb-3">Exit</a>
+        
+        {% if prediction == "Moderate" or prediction == "Severe" %}
+            <a href="9152987821" class="btn btn-warning ml-2 mb-3">Helpline</a>
+            {% set flash_message = "Do you need help?" %}
+        {% endif %}
+        
+        {% if flash_message %}
+            <div class="alert alert-warning text-center">
+                <h4>{{ flash_message }}</h4>
+            </div>
+        {% endif %}
+    </div>
+    {% include "conclusion.html" %}
+{% endblock %}
+
+
+

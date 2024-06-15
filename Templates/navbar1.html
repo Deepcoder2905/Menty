@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg custom-navbar" style="background-color: #e3f2fd;">
+    <a class="navbar-brand" href="home" style="color: #007bff;">
+        <img src="{{ url_for('static', filename='icon.png') }}" width="30" height="30" alt="Logo" class="d-inline-block align-top" style="margin-right: 5px; margin-left: 10px;">
+        Menty
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="home" style="color: #007bff; margin-right: 5px;">
+                    <i class="fas fa-home" style="margin-right: 5px;"></i>Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="doc" style="color: #007bff; margin-right: 5px; margin-left: 5px">
+                    <i class="fas fa-info-circle" style="margin-right: 5px;"></i>Docs
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="sec" style="color: #007bff; margin-right: 750px; margin-left: 5px">
+                    <i class="fas fa-concierge-bell" style="margin-right: 5px;"></i>Sections
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/logout" class="btn btn-danger">Logout</a>
+            </li>
+
+            
+        </ul>
+       
+    </div>
+</nav>
+
+<!-- Include Font Awesome and Bootstrap JS and dependencies -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.2/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

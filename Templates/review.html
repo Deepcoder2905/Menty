@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Review - Menty</title>
+
+<style>
+    .star-rating {
+        direction: rtl;
+        display: inline-block;
+        padding: 20px;
+    }
+    .star-rating input[type="radio"] {
+        display: none;
+    }
+    .star-rating label {
+        color: #bbb;
+        font-size: 30px;
+        padding: 0;
+        cursor: pointer;
+        -webkit-transition: all .3s ease-in-out;
+        -moz-transition: all .3s ease-in-out;
+        -ms-transition: all .3s ease-in-out;
+        -o-transition: all .3s ease-in-out;
+        transition: all .3s ease-in-out;
+    }
+    .star-rating input[type="radio"]:checked ~ label {
+        color: #f2b600;
+    }
+    .star-rating label:hover, .star-rating label:hover ~ label {
+        color: #f2b600;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+{% include "navbar.html" %}
+<div class="container mt-5">
+    <h1>Write a Review</h1>
+    <form method="POST" action="{{ url_for('submit_review') }}">
+        <div class="form-group">
+            <label for="rating">Rating:</label>
+            <div class="star-rating">
+                <input type="radio" id="5-stars" name="rating" value="5" required/>
+                <label for="5-stars" class="star">&#9733;</label>
+                <input type="radio" id="4-stars" name="rating" value="4" required/>
+                <label for="4-stars" class="star">&#9733;</label>
+                <input type="radio" id="3-stars" name="rating" value="3" required/>
+                <label for="3-stars" class="star">&#9733;</label>
+                <input type="radio" id="2-stars" name="rating" value="2" required/>
+                <label for="2-stars" class="star">&#9733;</label>
+                <input type="radio" id="1-stars" name="rating" value="1" required/>
+                <label for="1-stars" class="star">&#9733;</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="feedback">Feedback:</label>
+            <textarea class="form-control" id="feedback" name="feedback"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Submit Review</button>
+    </form>
+
+    <hr>
+
+    <h2>Recent Reviews</h2>
+    <ul class="list-group">
+        {% for review in reviews %}
+            <li class="list-group-item">
+                <strong>Rating: {{ review.rating }}</strong><br>
+                {% if review.feedback %}
+                    <p>{{ review.feedback }}</p>
+                    {% for user in users %}
+                   {% if user.id == review.user_id %}
+                   <span><strong>-{{ user.username }}</strong></span>
+                   {% endif %}
+                   {% endfor %}
+                {% else %}
+                    <p>No feedback provided.</p>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+<br>
+<br>
+{% include "conclusion.html" %}
+{% endblock %}
+
