@@ -1,5 +1,5 @@
 Flask==2.0.2
-Flask-SQLAlchemy==2.5.2
+Flask-SQLAlchemy==2.5.1
 opencv-python==4.5.4.58
 numpy==1.21.4
 tensorflow==2.7.0
